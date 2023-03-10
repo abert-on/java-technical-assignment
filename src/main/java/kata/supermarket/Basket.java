@@ -8,8 +8,10 @@ import java.util.List;
 
 public class Basket {
     private final List<Item> items;
+    private final List<Promotion> promotions;
 
-    public Basket() {
+    public Basket(List<Promotion> promotions) {
+        this.promotions = promotions;
         this.items = new ArrayList<>();
     }
 
@@ -21,15 +23,21 @@ public class Basket {
         return Collections.unmodifiableList(items);
     }
 
+    List<Promotion> promotions() {
+        return Collections.unmodifiableList(promotions);
+    }
+
     public BigDecimal total() {
         return new TotalCalculator().calculate();
     }
 
     private class TotalCalculator {
         private final List<Item> items;
+        private final List<Promotion> promotions;
 
         TotalCalculator() {
             this.items = items();
+            this.promotions = promotions();
         }
 
         private BigDecimal subtotal() {
@@ -47,7 +55,7 @@ public class Basket {
          *  which provides that functionality.
          */
         private BigDecimal discounts() {
-            return BigDecimal.ZERO;
+            return promotions.stream().map(promotion -> promotion.discount(items)).reduce(BigDecimal.ZERO, BigDecimal::add);
         }
 
         private BigDecimal calculate() {
