@@ -22,16 +22,21 @@ public class BuyXGetXFreePromotion implements Promotion {
 
     @Override
     public BigDecimal discount(List<Item> items) {
-        List<Item> applicableItems = items.stream()
-                .filter(item -> item.sku().equals(applicableSku))
-                .collect(Collectors.toList());
+        List<Item> applicableItems = applicableItems(items);
 
         if (applicableItems.isEmpty() || applicableItems.size() < threshold) {
             return BigDecimal.ZERO;
         }
         else {
-            return applicableItems.get(0).price().multiply(new BigDecimal(numberFree * applicableItems.size() / threshold));
+            int itemsToBeGivenAsFree = numberFree * (applicableItems.size() / threshold);
+            return applicableItems.get(0).price().multiply(new BigDecimal(itemsToBeGivenAsFree));
         }
 
+    }
+
+    private List<Item> applicableItems(List<Item> items) {
+        return items.stream()
+                .filter(item -> item.sku().equals(applicableSku))
+                .collect(Collectors.toList());
     }
 }

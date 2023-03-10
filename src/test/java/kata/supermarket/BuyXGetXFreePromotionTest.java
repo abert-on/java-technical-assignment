@@ -31,7 +31,12 @@ class BuyXGetXFreePromotionTest {
                 Arguments.of("buy one get one free on 4 applicable items", Arrays.asList(sausageRoll(), sausageRoll(), sausageRoll(), sausageRoll()), "001", 2, 1, "4.98"),
                 Arguments.of("buy one get one free on 1 not applicable item", Collections.singletonList(porkPie()), "001", 2, 1, "0"),
                 Arguments.of("buy one get one free on 2 not applicable items",  Arrays.asList(porkPie(), porkPie()), "001", 2, 1, "0"),
-                Arguments.of("buy one get one free on mix of items where discount applicable once",  Arrays.asList(porkPie(), porkPie(), sausageRoll(), sausageRoll()), "001", 2, 1, "2.49")
+                Arguments.of("buy one get one free on mix of items where discount applicable once",  Arrays.asList(porkPie(), porkPie(), sausageRoll(), sausageRoll()), "001", 2, 1, "2.49"),
+                Arguments.of("buy three for the price of two on 1 applicable items",  Collections.singletonList(sausageRoll()), "001", 3, 1, "0"),
+                Arguments.of("buy three for the price of two on 2 applicable items",  Arrays.asList(sausageRoll(), sausageRoll()), "001", 3, 1, "0"),
+                Arguments.of("buy three for the price of two on 3 applicable items",  Arrays.asList(sausageRoll(), sausageRoll(), sausageRoll()), "001", 3, 1, "2.49"),
+                Arguments.of("buy three for the price of two on 4 applicable items",  Arrays.asList(sausageRoll(), sausageRoll(), sausageRoll(), sausageRoll()), "001", 3, 1, "2.49"),
+                Arguments.of("buy three for the price of two on 6 applicable items",  Arrays.asList(sausageRoll(), sausageRoll(), sausageRoll(), sausageRoll(),  sausageRoll(), sausageRoll()), "001", 3, 1, "4.98")
 
         );
     }
