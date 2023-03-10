@@ -1,6 +1,6 @@
 package kata.supermarket;
 
-import kata.supermarket.promotions.BuyOneGetOneFreePromotion;
+import kata.supermarket.promotions.BuyXGetXFreePromotion;
 import kata.supermarket.promotions.Promotion;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -56,7 +56,7 @@ class BasketTest {
         return Arguments.of("two items priced per unit on buy on get on free discount",
                 "2.50",
                 Arrays.asList(aPackOfSixSausageRolls(), aPackOfSixSausageRolls()),
-                Collections.singletonList(new BuyOneGetOneFreePromotion("003")));
+                Collections.singletonList(new BuyXGetXFreePromotion("003", 2, 1)));
     }
 
     private static Arguments aSingleItemPricedPerUnit() {
