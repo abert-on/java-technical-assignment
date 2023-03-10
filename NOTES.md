@@ -6,6 +6,7 @@
 - Keeping Item as a checkout orientated representation of product for this exercise 
 - Promotions would come from some sort of provider interface (that could be implemented by db repo, etc.), but just passing to basket for this
 - SKU as a product identifier is common to product and weighed product. Should perhaps encapsulate this in product interface.
+- Started with buy 1, get 1 free discount. Then made this more generic to also satisfy the 3 for the price of 2 scenario. 
 - Made the assumption that weighed products wouldn't have the buy x get x free promotion. Could be wrongly triggered by splitting a weighted product in to separate add calls. 
 
 ## Other thoughts
