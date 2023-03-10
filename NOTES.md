@@ -2,6 +2,7 @@
 
 ## Design decisions
 
+- Added sku as a product identifier to help determine which product is applicable for a discount. Assuming one product per promotion for now. 
 - Keeping Item as a checkout orientated representation of product for this exercise 
 - Promotions would come from some sort of provider interface (that could be implemented by db repo, etc.), but just passing to basket for this
 - SKU as a product identifier is common to product and weighed product. Should perhaps encapsulate this in product interface.
