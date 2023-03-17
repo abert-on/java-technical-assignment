@@ -2,14 +2,12 @@ package kata.supermarket;
 
 import java.math.BigDecimal;
 
-public class Product {
-
-    private final String sku;
+public class Product extends BaseProduct {
 
     private final BigDecimal pricePerUnit;
 
-    public Product(final String sku, final BigDecimal pricePerUnit) {
-        this.sku = sku;
+    public Product(final String sku, final String type, final BigDecimal pricePerUnit) {
+        super(sku, type);
         this.pricePerUnit = pricePerUnit;
     }
 
@@ -17,11 +15,12 @@ public class Product {
         return pricePerUnit;
     }
 
-    String sku() {
-        return sku;
-    }
-
     public Item oneOf() {
         return new ItemByUnit(this);
+    }
+
+    @Override
+    public String unit() {
+        return "individual";
     }
 }

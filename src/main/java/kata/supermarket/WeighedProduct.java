@@ -2,13 +2,12 @@ package kata.supermarket;
 
 import java.math.BigDecimal;
 
-public class WeighedProduct {
+public class WeighedProduct extends BaseProduct {
 
-    private final String sku;
     private final BigDecimal pricePerKilo;
 
-    public WeighedProduct(final String sku, final BigDecimal pricePerKilo) {
-        this.sku = sku;
+    public WeighedProduct(final String sku, final String type, final BigDecimal pricePerKilo) {
+        super(sku, type);
         this.pricePerKilo = pricePerKilo;
     }
 
@@ -16,11 +15,12 @@ public class WeighedProduct {
         return pricePerKilo;
     }
 
-    String sku() {
-        return sku;
-    }
-
     public Item weighing(final BigDecimal kilos) {
         return new ItemByWeight(this, kilos);
+    }
+
+    @Override
+    public String unit() {
+        return "kilos";
     }
 }

@@ -1,6 +1,7 @@
 package kata.supermarket;
 
 import kata.supermarket.promotions.BuyXGetXFreePromotion;
+import kata.supermarket.promotions.ProductTypeOverOneWeightPromotion;
 import kata.supermarket.promotions.Promotion;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,8 +35,21 @@ class BasketTest {
                 aSingleItemPricedByWeight(),
                 multipleItemsPricedByWeight(),
                 twoItemsPricedByUnitOnBuyOneGetOneFreeDiscount(),
-                threeItemsPricedByUnitOnBuyThreeForThePriceOfTwoDiscount()
+                threeItemsPricedByUnitOnBuyThreeForThePriceOfTwoDiscount(),
+                vegatablesOver1Kilo()
         );
+    }
+
+    private static Arguments vegatablesOver1Kilo() {
+        return Arguments.of("a kilo of different vegtables", "0.75", Arrays.asList(fiveHundredGramsCarrots(), fiveHundredGramsSprouts()), Arrays.asList(new ProductTypeOverOneWeightPromotion("vegetable", BigDecimal.ONE)));
+    }
+
+    private static Item fiveHundredGramsSprouts() {
+        return new ItemByWeight(new WeighedProduct("501", "vegetable", new BigDecimal("1.50")), new BigDecimal("0.50"));
+    }
+
+    private static Item fiveHundredGramsCarrots() {
+        return new ItemByWeight(new WeighedProduct("500", "vegetable", new BigDecimal("1.50")), new BigDecimal("0.50"));
     }
 
     private static Arguments aSingleItemPricedByWeight() {
@@ -76,19 +90,19 @@ class BasketTest {
     }
 
     private static Item aPintOfMilk() {
-        return new Product("001", new BigDecimal("0.49")).oneOf();
+        return new Product("001", "dairy", new BigDecimal("0.49")).oneOf();
     }
 
     private static Item aPackOfDigestives() {
-        return new Product("002", new BigDecimal("1.55")).oneOf();
+        return new Product("002", "biscuitss", new BigDecimal("1.55")).oneOf();
     }
 
     private static Item aPackOfSixSausageRolls() {
-        return new Product("003", new BigDecimal("2.50")).oneOf();
+        return new Product("003", "deli", new BigDecimal("2.50")).oneOf();
     }
 
     private static WeighedProduct aKiloOfAmericanSweets() {
-        return new WeighedProduct("004", new BigDecimal("4.99"));
+        return new WeighedProduct("004", "sweets", new BigDecimal("4.99"));
     }
 
     private static Item twoFiftyGramsOfAmericanSweets() {
@@ -96,7 +110,7 @@ class BasketTest {
     }
 
     private static WeighedProduct aKiloOfPickAndMix() {
-        return new WeighedProduct("005", new BigDecimal("2.99"));
+        return new WeighedProduct("005", "sweets", new BigDecimal("2.99"));
     }
 
     private static Item twoHundredGramsOfPickAndMix() {

@@ -42,11 +42,11 @@ class BuyXGetXFreePromotionTest {
     }
 
     private static Item sausageRoll() {
-        return new ItemByUnit(new Product("001", new BigDecimal("2.49")));
+        return new ItemByUnit(new Product("001", "deli", new BigDecimal("2.49")));
     }
 
     private static Item porkPie() {
-        return new ItemByUnit(new Product("002", new BigDecimal("1.99")));
+        return new ItemByUnit(new Product("002", "deli", new BigDecimal("1.99")));
     }
 
 }
